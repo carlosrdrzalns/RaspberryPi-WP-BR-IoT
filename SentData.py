@@ -39,15 +39,15 @@ def sendData(client, df, index, length):
             obj[df.columns[i]] = value
 
         # Publish the data to a specific Adafruit IO feed
-        client.publish('crodrigueza/feeds/pump-data.pump-data', json.dumps(obj))
+        client.publish('ADAFRUIT_USERNAME/feeds/ADAFRUIT_BROKER', json.dumps(obj))
         index += 1
          # Wait for 2 seconds before publishing the next set of data
     except Exception as e:
         print('Error:', e)
 
 
-aio_username = 'crodrigueza'
-aio_key = 'aio_BqmP55u5MbSH6xGzkBgJgymZiSib'
+aio_username = ADAFRUIT_USERNAME
+aio_key = ADAFRUIT_AIO_KEY
 client = mqtt.Client(client_id=str(uuid.uuid4()))
 client.username_pw_set(username=aio_username, password=aio_key)
 client.on_connect = on_connect
