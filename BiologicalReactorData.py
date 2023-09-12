@@ -19,8 +19,8 @@ def on_publish(client, userdata, mid):
 def on_disconnect(client, userdata, rc):
     print("Disconnected from MQTT broker")
 
-aio_username = 'crodrigueza'
-aio_key = 'aio_BqmP55u5MbSH6xGzkBgJgymZiSib'
+aio_username = ADAFRUIT_USERNAME
+aio_key = ADAFRUIT_AIO_KEY
 client = mqtt.Client(client_id=str(uuid.uuid4()))
 client.username_pw_set(username=aio_username, password=aio_key)
 client.on_connect = on_connect
@@ -55,7 +55,7 @@ while True:
             obj[df2.columns[i] + '_ini2'] = df2.iloc[index][df2.columns[i]]+rnd*df1.std()[df1.columns[i]]/10
 
         # Publish the data to a specific Adafruit IO feed
-        client.publish('crodrigueza/feeds/biologicalreactor.biological-reactor-data', json.dumps(obj))
+        client.publish('ADAFRUIT_USERNAME/feeds/ADAFRUIT_BROKER', json.dumps(obj))
         index += 1
         time.sleep(10)  # Wait for 2 seconds before publishing the next set of data
 
